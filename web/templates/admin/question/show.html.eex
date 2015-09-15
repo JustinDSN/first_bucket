@@ -1,0 +1,13 @@
+<h2>Show question</h2>
+
+<ul>
+
+  <li>
+    <strong>Content:</strong>
+    <%= @question.content %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: admin_question_path(@conn, :edit, @question) %>
+<%= link "Back", to: admin_question_path(@conn, :index) %>
