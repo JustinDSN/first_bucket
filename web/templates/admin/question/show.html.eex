@@ -9,5 +9,6 @@
 
 </ul>
 
+<%= link "View Answers", to: admin_question_answer_path(@conn, :index, @question) %>
 <%= link "Edit", to: admin_question_path(@conn, :edit, @question) %>
 <%= link "Back", to: admin_question_path(@conn, :index) %>

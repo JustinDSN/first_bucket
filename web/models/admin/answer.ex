@@ -1,14 +1,15 @@
-defmodule FirstBucket.Admin.Question do
+defmodule FirstBucket.Admin.Answer do
   use FirstBucket.Web, :model
 
-  schema "questions" do
+  schema "answers" do
     field :content, :string
+    field :is_correct, :boolean, default: false
+    belongs_to :question, FirstBucket.Admin.Question
 
-    has_many :answers, FirstBucket.Admin.Answer
     timestamps
   end
 
-  @required_fields ~w(content)
+  @required_fields ~w(content is_correct)
   @optional_fields ~w()
 
   @doc """
@@ -20,5 +21,6 @@ defmodule FirstBucket.Admin.Question do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> foreign_key_constraint(:question_id)
   end
 end

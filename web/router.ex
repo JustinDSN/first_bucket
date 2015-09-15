@@ -22,11 +22,17 @@ defmodule FirstBucket.Router do
   scope "/admin", FirstBucket.Admin, as: :admin do
     pipe_through :browser
 
-    resources "/questions", QuestionController
+    resources "/questions", QuestionController do
+      resources "/answers", AnswerController
+    end
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", FirstBucket do
   #   pipe_through :api
   # end
+
+  defimpl Plug.Exception, for: Ecto.NoResultsError do
+    def status(_exception), do: 404
+  end
 end
